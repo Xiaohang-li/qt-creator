@@ -185,12 +185,6 @@ void TabBar::mouseReleaseEvent(QMouseEvent *event) {
 
 QSize TabBar::tabSizeHint(int index) const {
     auto size = QTabBar::tabSizeHint(index);
-    if (size.width() < Constants::TAB_MIN_WIDTH) {
-        size.setWidth(Constants::TAB_MIN_WIDTH);
-    }
-    if (size.height() < Constants::TAB_MIN_HEIGHT) {
-        size.setHeight(Constants::TAB_MIN_HEIGHT);
-    }
     return size;
 }
 
