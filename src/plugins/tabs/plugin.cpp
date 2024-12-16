@@ -23,6 +23,7 @@ bool TabsPlugin::initialize([[maybe_unused]] const QStringList &arguments,
     layout->setContentsMargins(0, 0, 0, 0);
     widget->setLayout(layout);
     this->m_menuBar = Core::ICore::mainWindow()->menuBar();
+    this->m_menuBar->setVisible(true);
     layout->addWidget(this->m_menuBar);
     auto *tabBar = new TabBar(mainWindow->centralWidget());
     layout->addWidget(tabBar);
