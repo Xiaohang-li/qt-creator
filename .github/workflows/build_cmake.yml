@@ -618,7 +618,7 @@ jobs:
             --build-type Release
             --src .
             --build build
-            --add-make-arg --parallel 4
+            --add-make-arg "--parallel 4"
             --qt-path "${{ steps.qt.outputs.qt_dir }}"
             --llvm-path "${{ steps.libclang.outputs.libclang_dir }}"
             --python3 "${Python3_EXECUTABLE}"
