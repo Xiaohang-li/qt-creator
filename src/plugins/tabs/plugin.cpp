@@ -39,7 +39,12 @@ bool TabsPlugin::initialize([[maybe_unused]] const QStringList &arguments,
 }
 
 void TabsPlugin::extensionsInitialized() {
-  Core::ICore::mainWindow()->menuBar()->setVisible(true);
+  
+}
+
+void TabsPlugin::~TabsPlugin() {
+    this->m_menuBar->setVisible(true);
+    this->m_menuBar = nullptr;
 }
 
 } // namespace Tabs::Internal

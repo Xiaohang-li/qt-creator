@@ -12,7 +12,10 @@ class TabsPlugin final : public ExtensionSystem::IPlugin {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QtCreatorPlugin" FILE "Tabs.json")
 
+    
+
 public:
+    ~TabsPlugin();
     bool initialize(const QStringList &arguments,
                     QString *errorString) override;
     void extensionsInitialized() override;

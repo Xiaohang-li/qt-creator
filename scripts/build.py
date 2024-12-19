@@ -200,7 +200,7 @@ def build_qtcreator(args, paths):
             cmake_args += ['-DCPACK_INSTALL_PREFIX=/opt/qt-creator']
 
     common.check_print_call(cmake_args + [paths.src], paths.build)
-    build_args = ['cmake', '--build', '.', '-j 4']
+    build_args = ['cmake', '--build', '.']
     if args.make_args:
         build_args += ['--'] + args.make_args
     common.check_print_call(build_args, paths.build)
