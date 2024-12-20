@@ -42,7 +42,7 @@ void TabsPlugin::extensionsInitialized() {
   
 }
 
-void TabsPlugin::~TabsPlugin() {
+TabsPlugin::~TabsPlugin() {
     this->m_menuBar->setVisible(true);
     this->m_menuBar = nullptr;
 }
