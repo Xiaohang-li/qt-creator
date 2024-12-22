@@ -1,5 +1,4 @@
 #include "tabbar.h"
-
 #include "constants.h"
 
 #include <coreplugin/actionmanager/actionmanager.h>
@@ -30,6 +29,19 @@ static inline auto to_unsigned(T t) -> std::make_unsigned_t<T> {
     return static_cast<std::make_unsigned_t<T>>(t);
 }
 
+const static QString stylesheet(
+                            "QTabBar::tab {"
+                            "    background: #404142;"
+                            "}"
+                            "QTabBar::tab:selected {"
+                            "    background: #1B1C1C;"
+                            "    border-color: #9B9B9B;"
+                            "    border-bottom-color: #E1E1E1;"
+                            "}"
+                            "QTabBar::tab:hover {"
+                            "    background: #5E5F60;"
+                            "}");
+
 TabBar::TabBar(QWidget *parent) noexcept : QTabBar(parent) {
     this->setDocumentMode(true);
     this->setExpanding(false);
@@ -38,15 +50,27 @@ TabBar::TabBar(QWidget *parent) noexcept : QTabBar(parent) {
     this->setUsesScrollButtons(true);
     this->setDrawBase(false);
 
-    auto sp = QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    this->setStyleSheet(
+                        "QTabBar::tab {"
+                        "    background: #404142;"
+                             "color: #FFFFFF;"
+                        "}"
+                        "QTabBar::tab:selected {"
+                        "    background: #212222;"
+                        "    border-color: #9B9B9B;"
+                        "    border-bottom-color: #E1E1E1;"
+                        "}"
+                        "QTabBar::tab:hover {"
+                        "    background: #5E5F60;"
+                        "}");
+
+    auto sp = QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     sp.setHorizontalStretch(1);
     sp.setVerticalStretch(0);
     sp.setHeightForWidth(this->sizePolicy().hasHeightForWidth());
     this->setSizePolicy(sp);
 
-    this->setFixedHeight(32);
-
-    QObject::connect(this, &QTabBar::tabMoved, [this](int from, int to) {
+    QObject::connect(this, &QTabBar::tabMoved, this,[this](int from, int to) {
         auto posFrom = std::begin(this->m_editors);
         std::advance(posFrom, from);
 
@@ -103,6 +127,7 @@ TabBar::TabBar(QWidget *parent) noexcept : QTabBar(parent) {
     QObject::connect(
         sessionManager,
         &Core::SessionManager::sessionLoaded,
+        this,
         [editorManager]() {
             for (auto *entry : Core::DocumentModel::entries()) {
                 editorManager->activateEditorForEntry(
@@ -210,7 +235,7 @@ void TabBar::onEditorOpened(Core::IEditor *editor) noexcept {
 
     this->m_editors.push_back(editor);
 
-    QObject::connect(document, &Core::IDocument::changed, [this, editor]() {
+    QObject::connect(document, &Core::IDocument::changed, this, [this, editor]() {
         auto editorIt = std::find(
             std::begin(this->m_editors), std::end(this->m_editors), editor);
         if (editorIt == std::end(this->m_editors)) {

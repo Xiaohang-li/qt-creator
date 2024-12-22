@@ -1,5 +1,5 @@
 add_qtc_plugin(Tabs
-  PLUGIN_DEPENDS Core ProjectExplorer TextEditor LayoutSupport 
+  PLUGIN_DEPENDS Core ProjectExplorer TextEditor LayoutSupport
   SOURCES
         constants.h
         mainwindowfilter.cpp mainwindowfilter.h

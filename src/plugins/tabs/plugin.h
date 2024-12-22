@@ -2,11 +2,8 @@
 
 #include <extensionsystem/iplugin.h>
 
-class QMenuBar;
-
 namespace Tabs::Internal {
 
-class ChangeEventFilter;
 
 class TabsPlugin final : public ExtensionSystem::IPlugin {
     Q_OBJECT
@@ -15,14 +12,9 @@ class TabsPlugin final : public ExtensionSystem::IPlugin {
     
 
 public:
-    ~TabsPlugin();
     bool initialize(const QStringList &arguments,
                     QString *errorString) override;
     void extensionsInitialized() override;
-
-private:
-    QMenuBar *m_menuBar = nullptr;
-    ChangeEventFilter *m_filter = nullptr;
 };
 
 } // namespace Tabs::Internal
