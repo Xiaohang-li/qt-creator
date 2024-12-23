@@ -119,6 +119,7 @@ compile_commands.json
 .rcc/
 .uic/
 .clangd/
+.qtc_clangd/
 /*-debug/
 /*-release/
 /build*/
@@ -142,7 +143,6 @@ tmp/
 .cache/clangd/
 # ignore both a directory as well as a symlink
 /share/qtcreator/QtProject
-
 # Binaries
 # --------
 *.dll
