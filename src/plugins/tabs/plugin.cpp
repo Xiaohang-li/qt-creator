@@ -6,6 +6,7 @@
 
 #include <QBoxLayout>
 #include <QMenuBar>
+#include <QScrollBar>
 
 namespace Tabs::Internal {
 
@@ -16,7 +17,6 @@ bool TabsPlugin::initialize([[maybe_unused]] const QStringList &arguments,
     auto wrapperLayout =
         static_cast<QVBoxLayout *>(mainWindow->centralWidget()->layout());
 
-    // Qt parent-child relationship will cover deletion
     auto *widget = new QWidget(mainWindow->centralWidget());
     auto *layout = new QHBoxLayout;
     layout->setSpacing(0);
@@ -26,7 +26,6 @@ bool TabsPlugin::initialize([[maybe_unused]] const QStringList &arguments,
     auto *tabBar = new TabBar(mainWindow->centralWidget());
     layout->addWidget(tabBar);
     wrapperLayout->insertWidget(wrapperLayout->count() - 1, widget);
-
     return true;
 }
 

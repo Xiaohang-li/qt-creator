@@ -10,7 +10,6 @@ namespace LayoutSupport
 namespace Internal
 {
 
-const int a = 1;
 LayoutSupportPlugin::LayoutSupportPlugin() noexcept {}
 
 bool LayoutSupportPlugin::initialize(

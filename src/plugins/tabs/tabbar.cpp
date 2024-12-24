@@ -29,19 +29,6 @@ static inline auto to_unsigned(T t) -> std::make_unsigned_t<T> {
     return static_cast<std::make_unsigned_t<T>>(t);
 }
 
-const static QString stylesheet(
-                            "QTabBar::tab {"
-                            "    background: #404142;"
-                            "}"
-                            "QTabBar::tab:selected {"
-                            "    background: #1B1C1C;"
-                            "    border-color: #9B9B9B;"
-                            "    border-bottom-color: #E1E1E1;"
-                            "}"
-                            "QTabBar::tab:hover {"
-                            "    background: #5E5F60;"
-                            "}");
-
 TabBar::TabBar(QWidget *parent) noexcept : QTabBar(parent) {
     this->setDocumentMode(true);
     this->setExpanding(false);
@@ -64,7 +51,7 @@ TabBar::TabBar(QWidget *parent) noexcept : QTabBar(parent) {
                         "    background: #5E5F60;"
                         "}");
 
-    auto sp = QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    auto sp = QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
     sp.setHorizontalStretch(1);
     sp.setVerticalStretch(0);
     sp.setHeightForWidth(this->sizePolicy().hasHeightForWidth());
